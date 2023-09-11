@@ -11,6 +11,11 @@ const updateScore = (string) => {
   document.querySelector('.message').textContent = string;
 };
 
+const gameLost = () => {
+  document.querySelector('.message').textContent = 'You Lost the Game';
+  document.querySelector('.score').textContent = 0;
+};
+
 // Handling Click Events
 document.querySelector('.check').addEventListener('click', () => {
   let guess = Number(document.querySelector('.guess').value);
@@ -35,23 +40,14 @@ document.querySelector('.check').addEventListener('click', () => {
     }
   }
 
-  // Guess too high
-  else if (guess > secretNumber) {
+  // Guess Wrong
+  else if (guess !== secretNumber) {
     if (score > 1) {
-      updateScore('Too High!');
+      document.querySelector('.guess').value > secretNumber
+        ? updateScore('Too High!')
+        : updateScore('Too Low!');
     } else {
-      document.querySelector('.message').textContent = 'You Lost the Game';
-      document.querySelector('.score').textContent = 0;
-    }
-  }
-
-  // Guess too low
-  else if (guess < secretNumber) {
-    if (score > 1) {
-      updateScore('Too Low!');
-    } else {
-      document.querySelector('.message').textContent = 'You Lost the Game';
-      document.querySelector('.score').textContent = 0;
+      gameLost();
     }
   }
 });
