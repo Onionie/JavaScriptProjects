@@ -8,19 +8,30 @@ const current2Element = document.getElementById('current--1');
 const player1Element = document.querySelector('.player--0');
 const player2Element = document.querySelector('.player--1');
 const diceElement = document.querySelector('.dice');
-const btnNewGame = document.querySelector('btn--new');
+const btnNewGame = document.querySelector('.btn--new');
 const btnRollDice = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
 // Starting Conditions
-score1Element.textContent = 0;
-score2Element.textContent = 0;
-diceElement.classList.add('hidden');
+let playing, scores, currentScore, activePlayer;
 
-let playing = true;
-let scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
+// Initialize Game
+const initializeGame = () => {
+  diceElement.classList.add('hidden');
+  playing = true;
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+
+  player1Element.classList.remove('player--winner');
+  player2Element.classList.remove('player--winner');
+  score1Element.textContent = 0;
+  score2Element.textContent = 0;
+  current1Element.textContent = 0;
+  current2Element.textContent = 0;
+  player1Element.classList.add('player--active');
+  player2Element.classList.remove('player--active');
+};
 
 // switch player
 
@@ -49,6 +60,8 @@ const rollDice = () => {
   }
 };
 
+initializeGame();
+
 btnRollDice.addEventListener('click', rollDice);
 
 btnHold.addEventListener('click', () => {
@@ -56,7 +69,7 @@ btnHold.addEventListener('click', () => {
   document.getElementById(`score--${activePlayer}`).textContent =
     scores[activePlayer];
 
-  if (scores[activePlayer] >= 100) {
+  if (scores[activePlayer] >= 5) {
     playing = false;
     document
       .querySelector(`.player--${activePlayer}`)
@@ -68,4 +81,8 @@ btnHold.addEventListener('click', () => {
   } else {
     switchPlayer();
   }
+});
+
+btnNewGame.addEventListener('click', () => {
+  initializeGame();
 });
