@@ -61,10 +61,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -72,3 +68,32 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for of method
+// for (const movement of movements) {
+for (const [i, movement] of movements.entries()) {
+  if (movement >= 0) {
+    console.log(`Movement ${i + 1} This person made a deposit of ${movement}`);
+  } else {
+    console.log(
+      `Movement ${i + 1} This person made a withdrawal of ${movement * -1}`
+    );
+  }
+}
+
+//forEach method
+console.log('forEach Method');
+// The callback function parameters' order matters
+// first parameter is the current element,
+// second is the index
+// third is the entire array that we're looping over
+movements.forEach(function (movement, i, arr) {
+  if (movement >= 0) {
+    console.log(`Movement ${i + 1} This person made a deposit of ${movement}`);
+  } else {
+    console.log(
+      `Movement ${i + 1} This person made a withdrawal of ${movement * -1}`
+    );
+  }
+  // console.log(arr);
+});
