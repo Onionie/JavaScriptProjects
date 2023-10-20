@@ -155,3 +155,10 @@ const movementsDescription = movements.map(
     )}`
 );
 console.log(movementsDescription);
+
+console.log('');
+console.log('--- FILTER METHOD ---');
+const deposit = movements.filter(mov => mov > 0);
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(deposit);
+console.log(withdrawals);
