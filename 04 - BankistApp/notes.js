@@ -40,3 +40,34 @@ console.log(arrAt[arrAt.length - 1]); // 64
 console.log(arrAt.at(-1)); // 64
 
 console.log('jonas'.at(0)); // j
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for of method
+// for (const movement of movements) {
+for (const [i, movement] of movements.entries()) {
+  if (movement >= 0) {
+    console.log(`Movement ${i + 1} This person made a deposit of ${movement}`);
+  } else {
+    console.log(
+      `Movement ${i + 1} This person made a withdrawal of ${movement * -1}`
+    );
+  }
+}
+
+//forEach method
+console.log('forEach Method');
+// The callback function parameters' order matters
+// first parameter is the current element,
+// second is the index
+// third is the entire array that we're looping over
+movements.forEach(function (movement, i, arr) {
+  if (movement >= 0) {
+    console.log(`Movement ${i + 1} This person made a deposit of ${movement}`);
+  } else {
+    console.log(
+      `Movement ${i + 1} This person made a withdrawal of ${movement * -1}`
+    );
+  }
+  // console.log(arr);
+});

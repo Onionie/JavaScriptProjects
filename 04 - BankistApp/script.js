@@ -61,39 +61,21 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function (movement, i) {
+    const type = movement >= 0 ? 'deposit' : 'withdrawal';
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+    const html = `<div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__date">3 days ago</div>
+          <div class="movements__value">${movement}€</div>
+        </div>`;
 
-// for of method
-// for (const movement of movements) {
-for (const [i, movement] of movements.entries()) {
-  if (movement >= 0) {
-    console.log(`Movement ${i + 1} This person made a deposit of ${movement}`);
-  } else {
-    console.log(
-      `Movement ${i + 1} This person made a withdrawal of ${movement * -1}`
-    );
-  }
-}
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
 
-//forEach method
-console.log('forEach Method');
-// The callback function parameters' order matters
-// first parameter is the current element,
-// second is the index
-// third is the entire array that we're looping over
-movements.forEach(function (movement, i, arr) {
-  if (movement >= 0) {
-    console.log(`Movement ${i + 1} This person made a deposit of ${movement}`);
-  } else {
-    console.log(
-      `Movement ${i + 1} This person made a withdrawal of ${movement * -1}`
-    );
-  }
-  // console.log(arr);
-});
+displayMovements(account1.movements);
