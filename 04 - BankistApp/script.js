@@ -78,6 +78,11 @@ const displayMovements = function (movements) {
   });
 };
 
+const calcDisplayBalance = function (mvmnts) {
+  const balance = mvmnts.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
 displayMovements(account1.movements);
 
 const createUsername = function (accs) {
@@ -91,3 +96,5 @@ const createUsername = function (accs) {
 };
 
 createUsername(accounts);
+
+calcDisplayBalance(account1.movements);

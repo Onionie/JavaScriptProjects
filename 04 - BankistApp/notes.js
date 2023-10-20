@@ -162,3 +162,18 @@ const deposit = movements.filter(mov => mov > 0);
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(deposit);
 console.log(withdrawals);
+
+console.log('');
+console.log('--- REDUCE METHOD ---');
+const balance = movements.reduce(function (accumulator, current) {
+  return accumulator + current;
+});
+
+console.log(balance);
+
+//Maximum Value
+const maxVal = movements.reduce((acc, curr) => {
+  if (acc > curr) {
+    return acc;
+  } else return curr;
+}, movements[0]);
