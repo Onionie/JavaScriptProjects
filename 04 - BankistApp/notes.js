@@ -98,12 +98,12 @@ Test data:
 § Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 */
 
+console.log('');
+console.log('--- CHALLENGE 1 ---');
 const checkDogs = function (arr1, arr2) {
   const juliaDogs = arr1.slice();
   juliaDogs.splice(0, 1);
   juliaDogs.splice(-2);
-  console.log(juliaDogs);
-  console.log(arr2);
 
   const allDogsAges = juliaDogs.concat(arr2);
   console.log(allDogsAges);
@@ -118,3 +118,40 @@ const checkDogs = function (arr1, arr2) {
 };
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+console.log('');
+console.log('--- MAP, FILTER, REDUCE ---');
+console.log('Map: returns a new array');
+console.log(
+  'Filter: returns a new array containing the new elements that passed the test condition'
+);
+console.log('Reduce: boils all array elements down to one single value');
+
+console.log('');
+console.log('--- MAP METHOD ---');
+const eurToUSD = 1.1;
+
+const movementsUSD = movements.map(mov => mov * eurToUSD);
+
+console.log('Using Map');
+console.log(movements);
+console.log(movementsUSD);
+
+console.log('Using for of loop');
+// Imitating map method with for of loop
+const newArrayLikeMap = [];
+
+for (const mov of movements) {
+  newArrayLikeMap.push(mov * eurToUSD);
+}
+console.log(newArrayLikeMap);
+
+console.log('');
+console.log('Using map in more complex way');
+const movementsDescription = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov >= 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescription);
