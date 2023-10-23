@@ -173,10 +173,14 @@ console.log(balance);
 
 //Maximum Value
 const maxVal = movements.reduce((acc, curr) => {
+  console.log('MaxVal');
+  console.log(acc);
+  console.log(curr);
   if (acc > curr) {
     return acc;
   } else return curr;
 }, movements[0]);
+console.log(maxVal);
 
 console.log('');
 console.log('--- CHALLENGE 2 ---');
@@ -212,3 +216,15 @@ const calcAverageHumanAge = function (arr) {
 };
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+
+console.log('');
+console.log('--- CHAINING METHODS ---');
+
+const totalDeposits = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUSD)
+  .reduce((acc, curr) => {
+    return acc + curr;
+  }, 0);
+
+console.log(totalDeposits);
