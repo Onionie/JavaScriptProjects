@@ -70,7 +70,6 @@ const displayMovements = function (movements) {
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__date">3 days ago</div>
           <div class="movements__value">${movement}€</div>
         </div>`;
 
@@ -78,9 +77,9 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcDisplayBalance = function (mvmnts) {
-  const balance = mvmnts.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance}€`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -114,6 +113,17 @@ const createUsername = function (accs) {
 
 createUsername(accounts);
 
+const updateUI = function (account) {
+  // Display Movements
+  displayMovements(account.movements);
+
+  // Display Balance
+  calcDisplayBalance(account);
+
+  // Display Summary
+  calcDisplaySummary(account);
+};
+
 // Event Handlers
 let currentAccount;
 
@@ -137,12 +147,28 @@ btnLogin.addEventListener('click', e => {
   inputLoginUsername.value = inputLoginPin.value = '';
   inputLoginPin.blur();
 
-  // Display Movements
-  displayMovements(currentAccount.movements);
+  updateUI(currentAccount);
+});
 
-  // Display Balance
-  calcDisplayBalance(currentAccount.movements);
+btnTransfer.addEventListener('click', e => {
+  e.preventDefault();
 
-  // Display Summary
-  calcDisplaySummary(currentAccount);
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    acc => acc.userName === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.userName !== currentAccount.userName
+  ) {
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    // Update UI after transfer
+    updateUI(currentAccount);
+  }
 });
