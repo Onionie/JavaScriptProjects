@@ -277,3 +277,31 @@ const deposit1 = mov => mov > 0;
 console.log(movements.some(deposit1));
 console.log(movements.every(deposit1));
 console.log(movements.filter(deposit1));
+
+console.log('');
+console.log('--- FLAT and FLATMAP METHOD ---');
+
+const arr1 = [[1, 2, 3], [4, 5, 6], 7, 8];
+
+// Removes subarrays and flatten/combine to 1 array
+// Only goes 1 layer deep or 1 subarray nesting
+console.log(arr.flat()); // [1,2,3,4,5,6,7,8]
+
+const arrDeep = [[[1, 2], 3], [4, 5, 6], 7, 8];
+// flat method takes depth value as parameter
+console.log(arrDeep.flat(2)); // 2 levels deep, to flattend 2 layers of array nesting
+
+// looking in accounts and taking ALL accoutns movements
+
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, curr) => acc + curr, 0);
+
+// flatMap()
+// combines flat method and map method
+// it maps first and then flattens at the end
+// but flatMap only goes 1 level deep
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, curr) => acc + curr, 0);
