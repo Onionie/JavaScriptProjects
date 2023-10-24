@@ -172,3 +172,23 @@ btnTransfer.addEventListener('click', e => {
     updateUI(currentAccount);
   }
 });
+
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+
+  if (
+    currentAccount.userName === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    let index = accounts.findIndex(
+      acc => acc.userName === currentAccount.userName
+    );
+    // Delete Account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = '';
+});
