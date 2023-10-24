@@ -269,8 +269,8 @@ console.log(anyDeposits); // True; since there are atlease one movement that is 
 
 // EVERY
 // if every element passes the test, then only it returns true
-console.log(movements.every(mov => mov > 0)); //false; since there are negative values
-console.log(account4.movements.every(mov => mov > 0)); // true; since ALL values are above 0
+// console.log(movements.every(mov => mov > 0)); //false; since there are negative values
+// console.log(account4.movements.every(mov => mov > 0)); // true; since ALL values are above 0
 
 // Separate callback
 const deposit1 = mov => mov > 0;
@@ -292,16 +292,43 @@ const arrDeep = [[[1, 2], 3], [4, 5, 6], 7, 8];
 console.log(arrDeep.flat(2)); // 2 levels deep, to flattend 2 layers of array nesting
 
 // looking in accounts and taking ALL accoutns movements
-
-const overallBalance = accounts
-  .map(acc => acc.movements)
-  .flat()
-  .reduce((acc, curr) => acc + curr, 0);
+// const overallBalance = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, curr) => acc + curr, 0);
 
 // flatMap()
 // combines flat method and map method
 // it maps first and then flattens at the end
 // but flatMap only goes 1 level deep
-const overallBalance2 = accounts
-  .flatMap(acc => acc.movements)
-  .reduce((acc, curr) => acc + curr, 0);
+// const overallBalance2 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, curr) => acc + curr, 0);
+
+console.log('');
+console.log('--- SORT METHOD ---');
+const owners = ['Jonas', 'Zach', 'Adam'];
+console.log(owners.sort());
+console.log(owners); // Sort method mutates original array
+
+// Numbers
+// Ascending
+// console.log(movements);
+// movements.sort((a, b) => {
+//   if (a > b) return 1; // 1 to put it on right
+//   if (b > a) return -1; // -1 to put it on left
+// });
+
+// Shorthand
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+console.log('');
+console.log('--- Filling Arrays ---');
+
+// Array.from
+const y = Array.from({ length: 7 }, () => 1); // [1,1,1,1,1,1,1]
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1); // [1,2,3,4,5,6,7]
+
+console.log(y, z);
