@@ -255,3 +255,25 @@ console.log('--- FIND METHOD ---');
 // returns value and not an array
 const withdrawal = movements.find(mov => mov < 0); // -400
 console.log(withdrawal);
+
+console.log('');
+console.log('--- SOME and EVERY METHOD ---');
+console.log(movements);
+
+// Equality
+console.log(movements.includes(-130)); // True
+
+// SOME: Condition
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits); // True; since there are atlease one movement that is greater than zero
+
+// EVERY
+// if every element passes the test, then only it returns true
+console.log(movements.every(mov => mov > 0)); //false; since there are negative values
+console.log(account4.movements.every(mov => mov > 0)); // true; since ALL values are above 0
+
+// Separate callback
+const deposit1 = mov => mov > 0;
+console.log(movements.some(deposit1));
+console.log(movements.every(deposit1));
+console.log(movements.filter(deposit1));
