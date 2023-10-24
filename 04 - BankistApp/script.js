@@ -118,3 +118,6 @@ const createUsername = function (accs) {
 };
 
 createUsername(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);

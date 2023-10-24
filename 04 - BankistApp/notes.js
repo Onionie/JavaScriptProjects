@@ -247,3 +247,11 @@ const calcAverageHumanAge1 = function (arr) {
 };
 
 console.log(calcAverageHumanAge1([5, 2, 4, 1, 15, 8, 3]));
+
+console.log('');
+console.log('--- FIND METHOD ---');
+
+// Will return first element that meets condition
+// returns value and not an array
+const withdrawal = movements.find(mov => mov < 0); // -400
+console.log(withdrawal);
