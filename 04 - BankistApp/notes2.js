@@ -193,5 +193,28 @@ const calcDaysPassed = (date1, date2) => {
   Math.abs(date2 - date1 / (1000 * 60 * 60 * 24));
 };
 
-calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24));
+const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24));
 console.log(days1); // return days
+
+console.log('');
+console.log('--- TIMERS setTimeout and setInterval ---');
+
+const ingredients = ['olives', 'spinach'];
+
+const pizzaTimer = setTimeout(
+  (ing1, ing2) => console.log(`Here is your pizza wiht ${ing1} and ${ing2}'`),
+  3000,
+  ...ingredients
+);
+
+// To delete timer
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+//setInterval - every specified time, gets executed again
+// setInterval(() => {
+//   const now1 = new Date();
+//   const currHour = now1.getHours();
+//   const currMinutes = now1.getMinutes();
+//   const currSecs = now1.getSeconds();
+//   console.log(`Time now is ${currHour}:${currMinutes}:${currSecs}`);
+// }, 1000);
