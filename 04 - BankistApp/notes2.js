@@ -78,3 +78,31 @@ console.log(diamater);
 const priceCents = 345_99;
 
 console.log(Number('230_000')); // NaN
+
+console.log('');
+console.log('--- WORKING WITH BIGINT ---');
+
+// using n at the end of huge number signifies bigint
+console.log(483841321548646486465464n);
+console.log(BigInt(483841321548646486465464));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(36286372637263726376237263726372632n * 10000000n);
+// console.log(Math.sqrt(16n)); error
+
+const huge = 20289830237283728378237n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+// Exceptions
+console.log(20n > 15);
+console.log(20n === 20); // false
+console.log(typeof 20n); //bigint
+console.log(20n == '20'); // true
+
+console.log(huge + ' is REALLY big!!!');
+
+// Divisions
+console.log(11n / 3n); // 3n cuts off remainder
+console.log(10 / 3); // 3.3333335
