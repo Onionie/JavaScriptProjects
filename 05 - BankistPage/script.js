@@ -64,3 +64,41 @@ document
     // message.remove();
     message.parentElement.removeChild(message);
   });
+
+// STYLES
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+// ATTRIBUTES (src, alt, class, id, ...)
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+
+logo.alt = 'Beautiful new changed alt';
+
+// Non-standard
+console.log(logo.designer);
+console.log(logo.getAttribute('designer'));
+logo.setAttribute('company', 'Bankist'); // Set new attrbitue company='Bankist'
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// Data attributes
+console.log(logo.dataset.versionNumber);
+
+// CLASSES
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c'); // not includes
+
+// Don't use - Removes everything else
+// logo.className = 'jonas';
