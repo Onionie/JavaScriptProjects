@@ -112,8 +112,26 @@ const section1 = document.querySelector('#section--1');
 btnScrollTo.addEventListener('click', e => {
   const s1coords = section1.getBoundingClientRect();
 
-  window.scrollTo({
-    top: s1coords.top + window.scrollY,
+  // Old Way
+  // window.scrollTo({
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  // New Way
+  section1.scrollIntoView({
     behavior: 'smooth',
   });
 });
+
+const h1 = document.querySelector('h1');
+
+// // Modern and better way
+// h1.addEventListener('mouseenter', function (e) {
+//   alert('addEventListener: mouseenter');
+// });
+
+// // Old and bad way
+// h1.onmouseenter = function (e) {
+//   alert('addEventListener: mouseenter2');
+// };
