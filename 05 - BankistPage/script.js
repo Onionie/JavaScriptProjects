@@ -35,6 +35,7 @@ document.addEventListener('keydown', function (e) {
  *                  NOTES                *
  *                                       *
  *****************************************/
+/*
 const header = document.querySelector('.header');
 
 // CREATING AND INSERTING ELEMENTS
@@ -102,3 +103,17 @@ logo.classList.contains('c'); // not includes
 
 // Don't use - Removes everything else
 // logo.className = 'jonas';
+
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', e => {
+  const s1coords = section1.getBoundingClientRect();
+
+  window.scrollTo({
+    top: s1coords.top + window.scrollY,
+    behavior: 'smooth',
+  });
+});
