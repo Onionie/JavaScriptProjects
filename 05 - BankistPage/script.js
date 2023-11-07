@@ -1,13 +1,14 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
+///////////////////////////////////////
+// Modal window
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -27,6 +28,51 @@ overlay.addEventListener('click', closeModal);
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
+  }
+});
+
+btnScrollTo.addEventListener('click', e => {
+  // const s1coords = section1.getBoundingClientRect();
+
+  // Old Way
+  // window.scrollTo({
+  //   top: s1coords.top + window.scrollY,
+  //   behavior: 'smooth',
+  // });
+
+  // New Way
+  section1.scrollIntoView({
+    behavior: 'smooth',
+  });
+});
+
+//////////////////////////////////////////
+// Page Navigation
+
+// document.querySelectorAll('.nav__link').forEach(btn => {
+//   btn.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+
+//     document.querySelector(id).scrollIntoView({
+//       behavior: 'smooth',
+//     });
+//   });
+// });
+
+// EVENT DELEGATION
+// 1. Add event listener to common parent element
+// 2. Determine what element originated event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching Strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth',
+    });
   }
 });
 
@@ -106,25 +152,7 @@ logo.classList.contains('c'); // not includes
 
 */
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', e => {
-  const s1coords = section1.getBoundingClientRect();
-
-  // Old Way
-  // window.scrollTo({
-  //   top: s1coords.top + window.scrollY,
-  //   behavior: 'smooth',
-  // });
-
-  // New Way
-  section1.scrollIntoView({
-    behavior: 'smooth',
-  });
-});
-
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
 // // Modern and better way
 // h1.addEventListener('mouseenter', function (e) {
@@ -136,25 +164,25 @@ const h1 = document.querySelector('h1');
 //   alert('addEventListener: mouseenter2');
 // };
 
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
 
-const randomColor = () => {
-  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}), ${randomInt(0, 255)})`;
-};
+// const randomColor = () => {
+//   `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}), ${randomInt(0, 255)})`;
+// };
 
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  console.log('Link', e.target, e.currentTarget);
-  this.style.backgroundColor = randomColor();
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   console.log('Link', e.target, e.currentTarget);
+//   this.style.backgroundColor = randomColor();
 
-  // Stop Event propagation and bubbling
-  // e.stopPropagation(); //Not a good idea
-});
+//   // Stop Event propagation and bubbling
+//   // e.stopPropagation(); //Not a good idea
+// });
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  console.log('Links', e.target, e.currentTarget);
-});
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   console.log('Links', e.target, e.currentTarget);
+// });
 
-document.querySelector('.nav').addEventListener('click', function (e) {
-  console.log('Nav', e.target, e.currentTarget);
-});
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   console.log('Nav', e.target, e.currentTarget);
+// });
