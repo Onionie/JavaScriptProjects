@@ -186,3 +186,35 @@ logo.classList.contains('c'); // not includes
 // document.querySelector('.nav').addEventListener('click', function (e) {
 //   console.log('Nav', e.target, e.currentTarget);
 // });
+
+/*
+****** DOM TRAVERSING ******
+
+const h1 = document.querySelector('h1');
+
+// Going downwards: child elements
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes); // Everything, text, comment, elements
+console.log(h1.children); // Only elements
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'pink';
+
+// Going upwards: parent elements
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('h1').style.background = 'var(--gradient-primary)'; //h1 itself
+
+// Going sideways: sibling elements
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function (element) {
+  if (element !== h1) element.style.transform = 'scale(0.5)';
+});
+
+*/
