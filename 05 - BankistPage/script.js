@@ -228,6 +228,7 @@ const slider = function () {
   };
 
   const goToSlide = function (slide) {
+    // Each slide gets move 100% multiplied by slide index
     slides.forEach(
       (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
     );
@@ -235,6 +236,8 @@ const slider = function () {
 
   // Next slide
   const nextSlide = function () {
+    // maxSlide uses .length not zero base so -1
+    // if curSlide === maxSlide return to first slide with index 0
     if (curSlide === maxSlide - 1) {
       curSlide = 0;
     } else {
@@ -430,17 +433,26 @@ console.log(h1.parentElement.children);
 
 */
 
+/*
 // ****** Lifecycle DOM Events ******
+
+// When HTML is parsed
 document.addEventListener('DOMContentLoaded', function (e) {
   console.log('HTML parsed and DOM tree built!', e);
 });
 
+// load event is fired when the whole page has loaded,
+// including all dependent resources such as stylesheets, scripts, iframes, and images.
 window.addEventListener('load', function (e) {
   console.log('Page fully loaded', e);
 });
 
+// When users are about to close the page
+// Useful when user accidentally closing out page
+// while filling out form or data stuff
 window.addEventListener('beforeunload', function (e) {
   e.preventDefault();
   console.log(e);
   e.returnValue = '';
 });
+*/
